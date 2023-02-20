@@ -9,7 +9,7 @@ export const FullPost = () => {
     <>
       <Post
         id={1}
-        title="Roast the code #1 | Rock Paper Scissors"
+        title="Тест статья #1 | JavaScript (JS)."
         imageUrl="https://res.cloudinary.com/practicaldev/image/fetch/s--UnAfrEG8--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/icohm5g0axh9wjmu4oc3.png"
         user={{
           avatarUrl:
@@ -23,11 +23,10 @@ export const FullPost = () => {
         isFullPost
       >
         <p>
-          Hey there! 👋 I'm starting a new series called "Roast the Code", where
-          I will share some code, and let YOU roast and improve it. There's not
-          much more to it, just be polite and constructive, this is an exercise
-          so we can all learn together. Now then, head over to the repo and
-          roast as hard as you can!!
+          JavaScript (JS) — высокоуровневый язык программирования, который
+          поддерживает императивный, функциональный, событийно-ориентированный и
+          другие подходы. Он относится к языкам с динамической типизацией,
+          входит в группу интерпретируемых языков.
         </p>
       </Post>
       <CommentsBlock
