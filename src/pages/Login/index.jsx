@@ -1,14 +1,15 @@
 import React from 'react'
+import { Navigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { useForm } from 'react-hook-form'
+
 import Typography from '@mui/material/Typography'
 import TextField from '@mui/material/TextField'
 import Paper from '@mui/material/Paper'
 import Button from '@mui/material/Button'
-import { useForm } from 'react-hook-form'
-import { useDispatch, useSelector } from 'react-redux'
+import styles from './Login.module.scss'
 
 import { fetchAuth, selectIsAuth } from '../../redux/slices/auth'
-import styles from './Login.module.scss'
-import { Navigate } from 'react-router-dom'
 
 export const Login = () => {
   const isAuth = useSelector(selectIsAuth)
@@ -17,12 +18,11 @@ export const Login = () => {
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors, isValid },
   } = useForm({
     defaultValues: {
-      email: 'ivan@test.ru',
-      password: '12345',
+      email: '',
+      password: '',
     },
     mode: 'onChange',
   })
@@ -66,7 +66,13 @@ export const Login = () => {
           {...register('password', { required: 'Укажите пароль' })}
           fullWidth
         />
-        <Button type="submit" size="large" variant="contained" fullWidth>
+        <Button
+          disabled={!isValid}
+          type="submit"
+          size="large"
+          variant="contained"
+          fullWidth
+        >
           Войти
         </Button>
       </form>
