@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
 import TextField from '@mui/material/TextField'
 import Paper from '@mui/material/Paper'
@@ -13,8 +13,10 @@ import { selectIsAuth } from '../../redux/slices/auth'
 import axios from '../../axios'
 
 export const AddPost = () => {
-  const isAuth = useSelector(selectIsAuth)
   const navigate = useNavigate()
+  const { id } = useParams()
+  const isAuth = useSelector(selectIsAuth)
+  const isEditing = Boolean(id)
 
   const [isLoading, setLoading] = React.useState(false)
   const [text, setText] = React.useState('')
@@ -57,14 +59,34 @@ export const AddPost = () => {
         imageUrl,
       }
 
-      const { data } = await axios.post('/posts', fields)
-      const id = data._id
-      navigate(`/posts/${id}`)
+      const { data } = isEditing
+        ? await axios.patch(`/posts/${id}`, fields)
+        : await axios.post('/posts', fields)
+
+      const _id = isEditing ? id : data._id
+      navigate(`/posts/${_id}`)
     } catch (err) {
       console.warn(err)
       alert('Ошибка при создании статьи!')
     }
   }
+
+  React.useEffect(() => {
+    if (id) {
+      axios
+        .get(`/posts/${id}`)
+        .then(({ data }) => {
+          setTitle(data.title)
+          setText(data.text)
+          setTags(data.tags.join(','))
+          setImageUrl(data.imageUrl)
+        })
+        .catch((err) => {
+          console.log(err)
+          alert('Ошибка при получении статьи!')
+        })
+    }
+  }, [])
 
   const options = React.useMemo(
     () => ({
@@ -142,7 +164,7 @@ export const AddPost = () => {
       />
       <div className={styles.buttons}>
         <Button onClick={onSubmit} size="large" variant="contained">
-          Опубликовать
+          {isEditing ? 'Сохранить' : 'Опубликовать'}
         </Button>
         <a href="/">
           <Button size="large">Отмена</Button>
