@@ -5,10 +5,12 @@ import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Grid from '@mui/material/Grid'
 
-import { Post } from '../components/Post'
-import { TagsBlock } from '../components/TagsBlock'
-import { CommentsBlock } from '../components/CommentsBlock'
-import { fetchPosts, fetchTags } from '../redux/slices/posts'
+import { Post } from '../../components/Post'
+import { TagsBlock } from '../../components/TagsBlock'
+import { CommentsBlock } from '../../components/CommentsBlock'
+import { fetchPosts, fetchTags } from '../../redux/slices/posts'
+
+import styles from './Home.module.scss'
 
 export const Home = () => {
   const dispatch = useDispatch()
@@ -34,8 +36,8 @@ export const Home = () => {
         <Tab label="Новые" />
         <Tab label="Популярные" />
       </Tabs>
-      <Grid container spacing={4}>
-        <Grid xs={8} item>
+      <Grid classes={{ root: styles.content }} container spacing={4}>
+        <Grid classes={{ root: styles.posts }} xs={8} item>
           {(isPostsLoading ? [...Array(3)] : posts.items).map((obj, index) =>
             isPostsLoading ? (
               <Post key={index} isLoading={true} />
@@ -58,7 +60,7 @@ export const Home = () => {
             )
           )}
         </Grid>
-        <Grid xs={4} item>
+        <Grid classes={{ root: styles.tagsComments }} xs={4} item>
           <TagsBlock items={tags.items} isLoading={isTagsLoading} />
           <CommentsBlock
             items={[

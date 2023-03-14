@@ -14,6 +14,7 @@
 
 .image {
   width: 100%;
+  padding: 5px;
 }
 
 .tags {
@@ -40,5 +41,13 @@
 
   button {
     margin-right: 15px;
+  }
+}
+
+@media (max-width: 900px) {
+  .title {
+    input {
+      font-size: 32px;
+    }
   }
 }

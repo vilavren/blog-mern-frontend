@@ -128,6 +128,7 @@ export const AddPost = () => {
             variant="contained"
             color="error"
             onClick={onClickRemoveImage}
+            style={{ marginLeft: 10 }}
           >
             Удалить
           </Button>
