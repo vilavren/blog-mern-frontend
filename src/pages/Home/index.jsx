@@ -66,10 +66,10 @@ export const Home = () => {
             items={[
               {
                 user: {
-                  fullName: 'Вася Пупкин',
+                  fullName: 'Василий Иванов',
                   avatarUrl: 'https://mui.com/static/images/avatar/1.jpg',
                 },
-                text: 'Это тестовый комментарий',
+                text: 'You should set the prop to align the avatar at the top',
               },
               {
                 user: {

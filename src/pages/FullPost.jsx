@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 
-import axios from '../axios'
+import axios from '../utils/axios'
 
 import { Post } from '../components/Post'
 import { Index } from '../components/AddComment'
@@ -54,10 +54,10 @@ export const FullPost = () => {
         items={[
           {
             user: {
-              fullName: 'Вася Пупкин',
+              fullName: 'Василий Петров',
               avatarUrl: 'https://mui.com/static/images/avatar/1.jpg',
             },
-            text: 'Это тестовый комментарий 555555',
+            text: 'You should set the prop to align the avatar at the top',
           },
           {
             user: {

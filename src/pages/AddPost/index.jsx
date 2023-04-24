@@ -10,7 +10,7 @@ import 'easymde/dist/easymde.min.css'
 import styles from './AddPost.module.scss'
 
 import { selectIsAuth } from '../../redux/slices/auth'
-import axios from '../../axios'
+import axios from '../../utils/axios'
 
 export const AddPost = () => {
   const navigate = useNavigate()
